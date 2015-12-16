@@ -12,7 +12,7 @@ if docker ps -a -f name=$NAME | grep -q $NAME; then
 else
 	echo "=> Docker container $NAME does not exist. Pull the image from the repo, create a new one!"
 	docker pull $DOCKER_IMAGE:$DOCKER_TAG
-	docker run --name $NAME -p 7443:8443 -d $DOCKER_IMAGE:$DOCKER_TAG 
+	docker run --name $NAME -p 7443:8443 -d -v ~/apiman-openonderwijsapi-nl.jks:/opt/jboss/wildfly/standalone/configuration/apiman.jks $DOCKER_IMAGE:$DOCKER_TAG 
 fi
 
 
